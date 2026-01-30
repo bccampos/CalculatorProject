@@ -7,6 +7,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bruno.Calculator.ConsoleApp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bruno.Calculator.Tests", "..\Bruno.Calculator.Tests\Bruno.Calculator.Tests.csproj", "{DAE7D682-2A82-4EC5-A8D2-1371F6E650B3}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1. ApplicationLayer", "1. ApplicationLayer", "{E39839A7-FFF6-4F0B-B634-2368D2DA65FF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2. Domain", "2. Domain", "{02B3B4CE-94AA-4252-A9D4-A913AE99F3A9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3. Infrastructure", "3. Infrastructure", "{01DD5389-B75D-44D7-8E4B-947D70D1DD3A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bruno.Calculator.ApplicationLayer", "..\Bruno.Calculator.ApplicationLayer\Bruno.Calculator.ApplicationLayer.csproj", "{5A7316AA-3D3F-41EC-A92A-043A97724A55}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bruno.Calculator.Domain", "..\Bruno.Calculator.Domain\Bruno.Calculator.Domain.csproj", "{8CFDC9F8-BC33-4981-B7EB-3D2EA6D6D265}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bruno.Calculator.Infrastructure", "..\Bruno.Calculator.Infrastructure\Bruno.Calculator.Infrastructure.csproj", "{F4692038-F3F3-4243-9079-798C323E17BD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,9 +33,26 @@ Global
 		{DAE7D682-2A82-4EC5-A8D2-1371F6E650B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DAE7D682-2A82-4EC5-A8D2-1371F6E650B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DAE7D682-2A82-4EC5-A8D2-1371F6E650B3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A7316AA-3D3F-41EC-A92A-043A97724A55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A7316AA-3D3F-41EC-A92A-043A97724A55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A7316AA-3D3F-41EC-A92A-043A97724A55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A7316AA-3D3F-41EC-A92A-043A97724A55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CFDC9F8-BC33-4981-B7EB-3D2EA6D6D265}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CFDC9F8-BC33-4981-B7EB-3D2EA6D6D265}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CFDC9F8-BC33-4981-B7EB-3D2EA6D6D265}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CFDC9F8-BC33-4981-B7EB-3D2EA6D6D265}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4692038-F3F3-4243-9079-798C323E17BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4692038-F3F3-4243-9079-798C323E17BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4692038-F3F3-4243-9079-798C323E17BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4692038-F3F3-4243-9079-798C323E17BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5A7316AA-3D3F-41EC-A92A-043A97724A55} = {E39839A7-FFF6-4F0B-B634-2368D2DA65FF}
+		{8CFDC9F8-BC33-4981-B7EB-3D2EA6D6D265} = {02B3B4CE-94AA-4252-A9D4-A913AE99F3A9}
+		{F4692038-F3F3-4243-9079-798C323E17BD} = {01DD5389-B75D-44D7-8E4B-947D70D1DD3A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {239450DB-04F8-40D8-B2E4-BD8E74230E0E}

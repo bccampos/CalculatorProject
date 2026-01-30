@@ -7,4 +7,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Bruno.Calculator.ApplicationLayer\Bruno.Calculator.ApplicationLayer.csproj" />
+    <ProjectReference Include="..\..\Bruno.Calculator.Domain\Bruno.Calculator.Domain.csproj" />
+    <ProjectReference Include="..\..\Bruno.Calculator.Infrastructure\Bruno.Calculator.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
