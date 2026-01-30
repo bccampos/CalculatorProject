@@ -6,3 +6,4 @@
 /.vs
 /Bruno.Calculator.ConsoleApp/.vs/Bruno.Calculator.ConsoleApp
 /Bruno.Calculator.ConsoleApp/Bruno.Calculator.ConsoleApp/bin/Debug/net7.0
+/Bruno.Calculator.Tests/obj
