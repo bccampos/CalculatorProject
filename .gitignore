@@ -7,3 +7,10 @@
 /Bruno.Calculator.ConsoleApp/.vs/Bruno.Calculator.ConsoleApp
 /Bruno.Calculator.ConsoleApp/Bruno.Calculator.ConsoleApp/bin/Debug/net7.0
 /Bruno.Calculator.Tests/obj
+/Bruno.Calculator.ApplicationLayer/bin/Debug/net7.0
+/Bruno.Calculator.ApplicationLayer/obj
+/Bruno.Calculator.Domain/bin/Debug/net7.0
+/Bruno.Calculator.Domain/obj
+/Bruno.Calculator.Infrastructure/bin/Debug/net7.0
+/Bruno.Calculator.Infrastructure/obj
+/Bruno.Calculator.Tests/bin/Debug/net7.0
