@@ -1,0 +1,7 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/Bruno.Calculator.ConsoleApp/Bruno.Calculator.ConsoleApp/obj
+/.vs
+/Bruno.Calculator.ConsoleApp/.vs/Bruno.Calculator.ConsoleApp
