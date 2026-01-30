@@ -1,8 +1,5 @@
 namespace Bruno.Calculator.Domain.Exceptions;
 
-/// <summary>
-/// Exception thrown when attempting to divide by zero
-/// </summary>
 public class DivisionByZeroException : Exception
 {
     public DivisionByZeroException() 

@@ -1,4 +1,4 @@
-using Bruno.Calculator.Domain;
+using Bruno.Calculator.Domain.Result;
 using Xunit;
 
 namespace Bruno.Calculator.Tests.Domain;

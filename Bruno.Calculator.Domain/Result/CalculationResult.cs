@@ -1,4 +1,4 @@
-namespace Bruno.Calculator.Domain;
+namespace Bruno.Calculator.Domain.Result;
 
 public class CalculationResult
 {

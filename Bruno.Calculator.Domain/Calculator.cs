@@ -2,7 +2,7 @@ using InvalidOperationException = Bruno.Calculator.Domain.Exceptions.InvalidOper
 
 namespace Bruno.Calculator.Domain;
 
-public class Calculator
+public class Calculator : ICalculator
 {
     public CalculationResult Calculate(decimal numberLeft, decimal numberRight, Operation operation)
     {

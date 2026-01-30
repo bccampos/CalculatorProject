@@ -1,16 +1,16 @@
 using Bruno.Calculator.Domain;
-using DomainCalculator = Bruno.Calculator.Domain.Calculator;
+using Bruno.Calculator.Domain.Interface;
 using Xunit;
 
 namespace Bruno.Calculator.Tests.Domain;
 
 public class CalculatorTests
 {
-    private readonly DomainCalculator _calculator;
+    private readonly ICalculator _calculator;
 
     public CalculatorTests()
     {
-        _calculator = new DomainCalculator();
+        _calculator = new Calculator.Domain.Calculator();
     }
 
     [Theory]
