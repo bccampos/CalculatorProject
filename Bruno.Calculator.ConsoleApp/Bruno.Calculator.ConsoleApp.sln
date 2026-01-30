@@ -5,6 +5,8 @@ VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bruno.Calculator.ConsoleApp", "Bruno.Calculator.ConsoleApp\Bruno.Calculator.ConsoleApp.csproj", "{1026BE6B-B5AA-48DC-99CC-52F0FA411249}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bruno.Calculator.Tests", "..\Bruno.Calculator.Tests\Bruno.Calculator.Tests.csproj", "{DAE7D682-2A82-4EC5-A8D2-1371F6E650B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{1026BE6B-B5AA-48DC-99CC-52F0FA411249}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1026BE6B-B5AA-48DC-99CC-52F0FA411249}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1026BE6B-B5AA-48DC-99CC-52F0FA411249}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DAE7D682-2A82-4EC5-A8D2-1371F6E650B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DAE7D682-2A82-4EC5-A8D2-1371F6E650B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DAE7D682-2A82-4EC5-A8D2-1371F6E650B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DAE7D682-2A82-4EC5-A8D2-1371F6E650B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
