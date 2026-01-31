@@ -16,6 +16,7 @@ public class CalculatorTests
     {
         var strategies = new List<IParsingStrategy>
         {
+            new CustomDelimiterParsingStrategy(),
             new CommaNewlineParsingStrategy()
         };
 
@@ -207,5 +208,49 @@ public class CalculatorTests
         var result = _calculator.Add(input);
 
         Assert.Equal(1000, result);
+    }
+
+    [Fact]
+    public void Add_WithSingleCharCustomDelimiter_ReturnsSum()
+    {
+        _calculator.RemoveNumberLimit();
+        var input = "//;\n1;2";
+
+        var result = _calculator.Add(input);
+
+        Assert.Equal(3, result);
+    }
+
+    [Fact]
+    public void Add_WithPipeCustomDelimiter_ReturnsSum()
+    {
+        _calculator.RemoveNumberLimit();
+        var input = "//|\n1|2|3";
+
+        var result = _calculator.Add(input);
+
+        Assert.Equal(6, result);
+    }
+
+    [Fact]
+    public void Add_WithHashCustomDelimiter_ReturnsSum()
+    {
+        _calculator.RemoveNumberLimit();
+        var input = "//#\n2#5";
+
+        var result = _calculator.Add(input);
+
+        Assert.Equal(7, result);
+    }
+
+    [Fact]
+    public void Add_WithCommaCustomDelimiter_ReturnsSum()
+    {
+        _calculator.RemoveNumberLimit();
+        var input = "//,\n2,ff,100";
+
+        var result = _calculator.Add(input);
+
+        Assert.Equal(102, result);
     }
 }
