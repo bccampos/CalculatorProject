@@ -35,7 +35,8 @@ public class Calculator : ICalculator
         }
         catch (Exception ex)
         {
-            return CalculationResult.Failure(ex.Message);
+            var errorMessage = ExceptionHandler.FormatExceptionMessage(ex);
+            return CalculationResult.Failure(errorMessage);
         }
     }
 

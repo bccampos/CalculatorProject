@@ -1,3 +1,5 @@
+using Bruno.Calculator.Domain.Exceptions;
+
 namespace Bruno.Calculator.Domain.Helpers;
 
 public static class CalculatorUtils
@@ -7,6 +9,7 @@ public static class CalculatorUtils
         var delimiters = new[] { ',', '\n' };
         var parts = input.Split(delimiters, StringSplitOptions.None);
         var numbers = new List<int>();
+        var negativeNumbers = new List<int>();
 
         foreach (var part in parts)
         {
@@ -17,8 +20,21 @@ public static class CalculatorUtils
             }
             else
             {
-                numbers.Add(number);
+                if (number < 0)
+                {
+                    negativeNumbers.Add(number);
+                }
+                else if (number <= 1000)
+                {
+                    numbers.Add(number);
+                }
             }
+        }
+
+        if (negativeNumbers.Any())
+        {
+            var message = ExceptionHandler.FormatNegativeNumbersMessage(negativeNumbers);
+            throw new NegativeNumbersException(message);
         }
 
         return numbers;

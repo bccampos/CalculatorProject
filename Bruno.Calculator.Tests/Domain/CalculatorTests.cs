@@ -154,4 +154,49 @@ public class CalculatorTests
 
         Assert.Equal(10, result);
     }
+
+    [Fact]
+    public void Add_WithSingleNegativeNumber_ThrowsNegativeNumbersException()
+    {
+        _calculator.RemoveNumberLimit();
+        var input = "1,-2,3";
+
+        var exception = Assert.Throws<NegativeNumbersException>(() => _calculator.Add(input));
+        Assert.Contains("-2", exception.Message);
+        Assert.Contains("Negatives not allowed", exception.Message);
+    }
+
+    [Fact]
+    public void Add_WithMultipleNegativeNumbers_ThrowsNegativeNumbersExceptionWithAllNegatives()
+    {
+        _calculator.RemoveNumberLimit();
+        var input = "-1,-2";
+
+        var exception = Assert.Throws<NegativeNumbersException>(() => _calculator.Add(input));
+        Assert.Contains("-1", exception.Message);
+        Assert.Contains("-2", exception.Message);
+        Assert.Contains("Negatives not allowed", exception.Message);
+    }
+
+    [Fact]
+    public void Add_WithNumbersGreaterThan1000_IgnoresThem()
+    {
+        _calculator.RemoveNumberLimit();
+        var input = "1,1001,2";
+
+        var result = _calculator.Add(input);
+
+        Assert.Equal(3, result);
+    }
+
+    [Fact]
+    public void Add_With1000And1001_Includes1000ButIgnores1001()
+    {
+        _calculator.RemoveNumberLimit();
+        var input = "1000,1001";
+
+        var result = _calculator.Add(input);
+
+        Assert.Equal(1000, result);
+    }
 }
