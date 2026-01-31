@@ -1,8 +1,9 @@
 using Bruno.Calculator.Domain;
+using Bruno.Calculator.Domain.Result;
 
 namespace Bruno.Calculator.ApplicationLayer.Interface;
 
 public interface ICalculatorService
 {
-    CalculationResult Calculate(decimal numberLeft, decimal numberRight, Operation operation);
+    CalculationResult Calculate(string input, Operation operation);
 }

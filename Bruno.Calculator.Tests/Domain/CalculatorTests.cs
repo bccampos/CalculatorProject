@@ -1,4 +1,5 @@
 using Bruno.Calculator.Domain;
+using Bruno.Calculator.Domain.Exceptions;
 using Bruno.Calculator.Domain.Interface;
 using Xunit;
 
@@ -14,30 +15,143 @@ public class CalculatorTests
     }
 
     [Theory]
-    [InlineData(2, 3, 5)]
-    [InlineData(0, 0, 0)]
-    [InlineData(-5, 10, 5)]
-    [InlineData(1.5, 2.5, 4.0)]
-    public void Add_ValidInputs_ReturnsCorrectResult(decimal left, decimal right, decimal expected)
-    {
-        // Act
-        var result = _calculator.Add(left, right);
-
-        // Assert
-        Assert.Equal(expected, result);
-    }
-
-    [Theory]
-    [InlineData(2, 3, Operation.Add, 5)]
+    [InlineData("2,3", Operation.Add, 5)]
+    [InlineData("1,2,3", Operation.Add, 6)]
+    [InlineData("1\n2", Operation.Add, 3)]
+    [InlineData("", Operation.Add, 0)]
     public void Calculate_ValidOperations_ReturnsSuccessResult(
-        decimal left, decimal right, Operation operation, decimal expected)
+        string input, Operation operation, decimal expected)
     {
-        // Act
-        var result = _calculator.Calculate(left, right, operation);
+        _calculator.RemoveNumberLimit();
 
-        // Assert
+        var result = _calculator.Calculate(input, operation);
+
         Assert.True(result.IsSuccess);
         Assert.Equal(expected, result.Value);
         Assert.Null(result.ErrorMessage);
+    }
+
+    [Fact]
+    public void Add_WithTwoCommaSeparatedNumbers_ReturnsSum()
+    {
+        var input = "1,2";
+
+        var result = _calculator.Add(input);
+
+        Assert.Equal(3, result);
+    }
+
+    [Fact]
+    public void Add_WithSingleNumber_ReturnsNumber()
+    {
+        var input = "1";
+
+        var result = _calculator.Add(input);
+
+        Assert.Equal(1, result);
+    }
+
+    [Fact]
+    public void Add_WithEmptyString_ReturnsZero()
+    {
+        var input = "";
+
+        var result = _calculator.Add(input);
+
+        Assert.Equal(0, result);
+    }
+
+    [Fact]
+    public void Add_WithMoreThanTwoNumbers_ThrowsInvalidInputException()
+    {
+        var input = "1,2,3";
+
+        var exception = Assert.Throws<InvalidInputException>(() => _calculator.Add(input));
+        Assert.Contains("more than 2 number(s)", exception.Message);
+    }
+
+    [Fact]
+    public void Add_WithInvalidValue_TreatsAsZero()
+    {
+        var input = "1,abc";
+
+        var result = _calculator.Add(input);
+
+        Assert.Equal(1, result);
+    }
+
+    [Fact]
+    public void Add_WithMissingValue_TreatsAsZero()
+    {
+        var input = "1,";
+
+        var result = _calculator.Add(input);
+
+        Assert.Equal(1, result);
+    }
+    [Fact]
+    public void Add_AfterRemovingLimit_WithMultipleNumbers_ReturnsSum()
+    {
+        _calculator.RemoveNumberLimit();
+        var input = "1,2,3,4";
+
+        var result = _calculator.Add(input);
+
+        Assert.Equal(10, result);
+    }
+
+    [Fact]
+    public void Add_AfterRemovingLimit_WithFiveNumbers_ReturnsSum()
+    {
+        _calculator.RemoveNumberLimit();
+        var input = "1,2,3,4,5";
+
+        var result = _calculator.Add(input);
+
+        Assert.Equal(15, result);
+    }
+
+    [Fact]
+    public void Add_WithNewlineDelimiter_ReturnsSum()
+    {
+        _calculator.RemoveNumberLimit();
+        var input = "1\n2\n3";
+
+        var result = _calculator.Add(input);
+
+        Assert.Equal(6, result);
+    }
+
+    [Fact]
+    public void Add_WithMixedCommaAndNewline_ReturnsSum()
+    {
+        _calculator.RemoveNumberLimit();
+        var input = "1\n2,3";
+
+        var result = _calculator.Add(input);
+
+        Assert.Equal(6, result);
+    }
+
+    [Fact]
+    public void Add_WithCommaAndNewlineTogether_ReturnsSum()
+    {
+        _calculator.RemoveNumberLimit();
+        var input = "1,2\n3";
+
+        var result = _calculator.Add(input);
+
+        Assert.Equal(6, result);
+    }
+
+    [Fact]
+    public void Add_WithNewlineAndCommaTogether_ReturnsSum()
+    {
+        _calculator.RemoveNumberLimit();
+        var input = "1\n2,3,4";
+
+        var result = _calculator.Add(input);
+
+        Assert.Equal(10, result);
     }
 }
