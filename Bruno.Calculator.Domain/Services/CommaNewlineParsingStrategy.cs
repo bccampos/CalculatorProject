@@ -31,7 +31,7 @@ public class CommaNewlineParsingStrategy : IParsingStrategy
                 {
                     negativeNumbers.Add(number);
                 }
-                else if (number <= 1000)
+                else
                 {
                     numbers.Add(number);
                 }

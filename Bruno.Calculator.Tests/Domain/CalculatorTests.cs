@@ -10,6 +10,7 @@ namespace Bruno.Calculator.Tests.Domain;
 public class CalculatorTests
 {
     private readonly ICalculator _calculator;
+    private readonly INumberValidator _numberValidator;
 
     public CalculatorTests()
     {
@@ -17,7 +18,9 @@ public class CalculatorTests
         {
             new CommaNewlineParsingStrategy()
         };
-        _calculator = new Calculator.Domain.Calculator(strategies);
+
+        _numberValidator = new NumberValidator();
+        _calculator = new Calculator.Domain.Calculator(strategies, _numberValidator);
     }
 
     [Theory]

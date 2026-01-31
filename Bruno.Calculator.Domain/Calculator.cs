@@ -10,11 +10,13 @@ namespace Bruno.Calculator.Domain;
 public class Calculator : ICalculator
 {
     private readonly IEnumerable<IParsingStrategy> _parsingStrategies;
+    private readonly INumberValidator _numberValidator;
     private int _maxNumberCount = 2;
 
-    public Calculator(IEnumerable<IParsingStrategy> parsingStrategies)
+    public Calculator(IEnumerable<IParsingStrategy> parsingStrategies, INumberValidator numberValidator)
     {
         _parsingStrategies = parsingStrategies ?? throw new ArgumentNullException(nameof(parsingStrategies));
+        _numberValidator = numberValidator ?? throw new ArgumentNullException(nameof(numberValidator));
     }
 
     public CalculationResult Calculate(string input, Operation operation)
@@ -55,15 +57,16 @@ public class Calculator : ICalculator
         }
 
         var strategy = _parsingStrategies.First(s => s.CanHandle(input));
+        var allNumbers = strategy.Parse(input);
 
-        var numbers = strategy.Parse(input);
+        var validNumbers = _numberValidator.FilterValidNumbers(allNumbers);
 
-        if (numbers.Count > _maxNumberCount)
+        if (validNumbers.Count > _maxNumberCount)
         {
             throw new InvalidInputException($"Input contains more than {_maxNumberCount} number(s).");
         }
 
-        return numbers.Sum();
+        return validNumbers.Sum();
     }
 
     public void RemoveNumberLimit()
