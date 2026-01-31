@@ -3,12 +3,19 @@ using Bruno.Calculator.Domain.Result;
 using Bruno.Calculator.Domain.Exceptions;
 using Bruno.Calculator.Domain.Helpers;
 using InvalidOperationException = Bruno.Calculator.Domain.Exceptions.InvalidOperationException;
+using Bruno.Calculator.Domain.Services.Interface;
 
 namespace Bruno.Calculator.Domain;
 
 public class Calculator : ICalculator
 {
-    private int _maxNumberCount = 2; 
+    private readonly IEnumerable<IParsingStrategy> _parsingStrategies;
+    private int _maxNumberCount = 2;
+
+    public Calculator(IEnumerable<IParsingStrategy> parsingStrategies)
+    {
+        _parsingStrategies = parsingStrategies ?? throw new ArgumentNullException(nameof(parsingStrategies));
+    }
 
     public CalculationResult Calculate(string input, Operation operation)
     {
@@ -47,8 +54,10 @@ public class Calculator : ICalculator
             return 0;
         }
 
-        var numbers = CalculatorUtils.ParseNumbers(input);
-        
+        var strategy = _parsingStrategies.First(s => s.CanHandle(input));
+
+        var numbers = strategy.Parse(input);
+
         if (numbers.Count > _maxNumberCount)
         {
             throw new InvalidInputException($"Input contains more than {_maxNumberCount} number(s).");

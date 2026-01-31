@@ -1,6 +1,8 @@
 using Bruno.Calculator.Domain;
 using Bruno.Calculator.Domain.Exceptions;
 using Bruno.Calculator.Domain.Interface;
+using Bruno.Calculator.Domain.Services;
+using Bruno.Calculator.Domain.Services.Interface;
 using Xunit;
 
 namespace Bruno.Calculator.Tests.Domain;
@@ -11,7 +13,11 @@ public class CalculatorTests
 
     public CalculatorTests()
     {
-        _calculator = new Calculator.Domain.Calculator();
+        var strategies = new List<IParsingStrategy>
+        {
+            new CommaNewlineParsingStrategy()
+        };
+        _calculator = new Calculator.Domain.Calculator(strategies);
     }
 
     [Theory]
