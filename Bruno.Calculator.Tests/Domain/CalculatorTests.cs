@@ -253,4 +253,48 @@ public class CalculatorTests
 
         Assert.Equal(102, result);
     }
+
+    [Fact]
+    public void Add_WithMultiCharCustomDelimiter_ReturnsSum()
+    {
+        _calculator.RemoveNumberLimit();
+        var input = "//[***]\n1***2***3";
+
+        var result = _calculator.Add(input);
+
+        Assert.Equal(6, result);
+    }
+
+    [Fact]
+    public void Add_WithMultiCharDelimiter_ReturnsSum()
+    {
+        _calculator.RemoveNumberLimit();
+        var input = "//[delim]\n1delim2";
+
+        var result = _calculator.Add(input);
+
+        Assert.Equal(3, result);
+    }
+
+    [Fact]
+    public void Add_WithMultipleCustomDelimiters_ReturnsSum()
+    {
+        _calculator.RemoveNumberLimit();
+        var input = "//[*][!!][r9r]\n11r9r22*33!!44";
+
+        var result = _calculator.Add(input);
+
+        Assert.Equal(110, result);
+    }
+
+    [Fact]
+    public void Add_WithMultipleDelimitersAndInvalidValues_ReturnsSum()
+    {
+        _calculator.RemoveNumberLimit();
+        var input = "//[*][!!][r9r]\n11r9r22*hh*33!!44";
+
+        var result = _calculator.Add(input);
+
+        Assert.Equal(110, result);
+    }
 }
