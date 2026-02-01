@@ -24,11 +24,14 @@ public class Calculator : ICalculator
         try
         {
             decimal result = 0;
+            string? formula = null;
 
             switch (operation)
             {
                 case Operation.Add:
-                    result = Add(input);
+                    var (addResult, addFormula) = AddWithFormula(input);
+                    result = addResult;
+                    formula = addFormula;
                     break;
                 case Operation.Subtract:
                     break;
@@ -40,7 +43,7 @@ public class Calculator : ICalculator
                     throw new InvalidOperationException($"Unknown operation: {operation}");
             }
 
-            return CalculationResult.Success(result);
+            return CalculationResult.Success(result, formula);
         }
         catch (Exception ex)
         {
@@ -51,22 +54,45 @@ public class Calculator : ICalculator
 
     public int Add(string input)
     {
+        var (result, _) = AddWithFormula(input);
+        return result;
+    }
+
+    private (int result, string formula) AddWithFormula(string input)
+    {
         if (string.IsNullOrWhiteSpace(input))
         {
-            return 0;
+            return (0, "0 = 0");
         }
 
         var strategy = _parsingStrategies.First(s => s.CanHandle(input));
         var allNumbers = strategy.Parse(input);
 
-        var validNumbers = _numberValidator.FilterValidNumbers(allNumbers);
+        var formulaNumbers = new List<int>();
+        var validNumbers = new List<int>();
+
+        foreach (var number in allNumbers)
+        {
+            if (number > 1000)
+            {
+                formulaNumbers.Add(0);
+            }
+            else
+            {
+                formulaNumbers.Add(number);
+                validNumbers.Add(number);
+            }
+        }
 
         if (validNumbers.Count > _maxNumberCount)
         {
             throw new InvalidInputException($"Input contains more than {_maxNumberCount} number(s).");
         }
 
-        return validNumbers.Sum();
+        var sum = validNumbers.Sum();
+        var formula = string.Join("+", formulaNumbers) + $" = {sum}";
+
+        return (sum, formula);
     }
 
     public void RemoveNumberLimit()
