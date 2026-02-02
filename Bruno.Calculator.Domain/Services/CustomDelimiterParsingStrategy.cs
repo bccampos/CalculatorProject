@@ -36,6 +36,8 @@ public class CustomDelimiterParsingStrategy : BaseParsingStrategy
 
     private static (string[] delimiters, string numbers) ExtractSingleCharDelimiter(string input)
     {
+        input = ReplaceNewline(input);
+        
         var parts = input.Split('\n', 2);
         if (parts.Length != 2 || parts[0].Length != 3)
         {
@@ -47,6 +49,8 @@ public class CustomDelimiterParsingStrategy : BaseParsingStrategy
 
     private static (string[] delimiters, string numbers) ExtractBracketedDelimiters(string input)
     {
+        input = ReplaceNewline(input);
+        
         var parts = input.Split('\n', 2);
         if (parts.Length != 2)
         {
@@ -63,5 +67,10 @@ public class CustomDelimiterParsingStrategy : BaseParsingStrategy
 
         var delimiters = matches.Cast<Match>().Select(m => m.Groups[1].Value).ToArray();
         return (delimiters, parts[1]);
+    }
+
+    private static string ReplaceNewline(string input)
+    {
+        return input.Replace("\\n", "\n");
     }
 }

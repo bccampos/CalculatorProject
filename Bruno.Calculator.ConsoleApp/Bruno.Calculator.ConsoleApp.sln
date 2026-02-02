@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bruno.Calculator.Domain", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bruno.Calculator.Infrastructure", "..\Bruno.Calculator.Infrastructure\Bruno.Calculator.Infrastructure.csproj", "{F4692038-F3F3-4243-9079-798C323E17BD}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0. ConsoleApp", "0. ConsoleApp", "{CCD9C9C2-DE13-45C8-9896-046C7BE65458}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +52,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{1026BE6B-B5AA-48DC-99CC-52F0FA411249} = {CCD9C9C2-DE13-45C8-9896-046C7BE65458}
 		{5A7316AA-3D3F-41EC-A92A-043A97724A55} = {E39839A7-FFF6-4F0B-B634-2368D2DA65FF}
 		{8CFDC9F8-BC33-4981-B7EB-3D2EA6D6D265} = {02B3B4CE-94AA-4252-A9D4-A913AE99F3A9}
 		{F4692038-F3F3-4243-9079-798C323E17BD} = {01DD5389-B75D-44D7-8E4B-947D70D1DD3A}
